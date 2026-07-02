@@ -320,7 +320,7 @@ const resetPassword = AssyncHandler(async (req, res, next) => {
   const { newPassword } = req.body;
   console.log("NEWPASSWORD: " , newPassword) ; 
 
-  if (!newPassword) {
+  if (!newPassword || newPassword.trim() === "") {
     return res
       .status(400)
       .json({ message: "password Rquired", success: false, statusCode: 400 });
