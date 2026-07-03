@@ -58,7 +58,7 @@ const Otp = () => {
       const OtpData = InputArray.join("");
       console.log('OtpData' , OtpData); 
       const res = await axios.post(
-        `http://localhost:3000/api/auth/OTP`,
+        `http://localhost:8000/api/auth/verify-otp`,
         { email, otp: OtpData },
         {
           headers: { "Content-Type": "application/json" },

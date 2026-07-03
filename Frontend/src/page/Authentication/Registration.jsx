@@ -9,7 +9,7 @@ const Registration = () => {
     password: "",
     Confirmpassword: "",
   });
-  const navigate = useNavigate() ;
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +45,7 @@ const Registration = () => {
         },
       );
       console.log(res.data);
-      navigate("/login"); 
+      navigate("/login");
     } catch (error) {
       console.error(error.message);
     }

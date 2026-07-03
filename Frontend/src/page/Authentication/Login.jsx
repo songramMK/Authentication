@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Otp from './Otp';
 const Login = () => {
     const [data, setData] = useState({
@@ -17,6 +17,28 @@ const Login = () => {
         setData((prev)=>({...prev, [name]: value})) ; 
 
     }
+    const ResendOtp = async(e)=>{
+      e.preventDefault() ; 
+      try{
+       await axios.get(
+          `http://localhost:8000/api/auth/resendotp`,
+          
+        ).then((response)=>{
+          console.log(response.data) ; 
+                  navigate("/otp", {
+                    state: {
+                      email: "",
+                    },
+                  });
+        }).catch((error)=>{
+          console.error(error) ; 
+        });
+      }catch(error){
+        console.log(error) ; 
+      }
+    }
+
+
     const handleSubmit = async(e)=>{
         e.preventDefault() ; 
         console.log(data);
@@ -111,6 +133,9 @@ const Login = () => {
             className="border  border-green-300 rounded outline-green-600 p-1 sm:p-4 "
           />
           <br></br>
+
+
+          <p onClick={ResendOtp} className='ms-0 text-xs font-light text-green-300 '>Forget Password</p>
 
           <button
             className="btn w-full break-word  mt-10 rounded-2xl bg-green-400 hover:bg-green-700"
